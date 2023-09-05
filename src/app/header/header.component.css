@@ -1,0 +1,39 @@
+header {
+  width: 100%;
+  background-color: #ffca00;
+  color: #333;
+  box-shadow: 0px 2px 5px #999;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+nav .logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+button {
+  border: none;
+  background: none;
+  font-size: 1rem;
+  color: #555;
+  border: solid 1px #555;
+  border-radius: 8px;
+  padding: 5px 1rem;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+button:hover {
+  background-color: #eebf00;
+}
