@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { NotesComponent } from './notes/notes.component';
 import { NoteItemComponent } from './notes/note-item/note-item.component';
 import { HeaderComponent } from './header/header.component';
+import { NewNoteComponent } from './new-note/new-note.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotesComponent,
     NoteItemComponent,
-    HeaderComponent
+    HeaderComponent,
+    NewNoteComponent
   ],
   imports: [
     BrowserModule,

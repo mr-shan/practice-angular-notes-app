@@ -1,0 +1,24 @@
+<div class="new-note-container">
+  <div class="backslash" #backslash></div>
+  <div class="main-body" #mainBody>
+    <form class="new-note-form">
+      <div class="input-wrapper-name">
+        <input type="text" name="name" placeholder="Name" [(ngModel)]="name" />
+      </div>
+      <div class="input-wrapper">
+        <textarea
+          placeholder="Content"
+          name="content"
+          id="content"
+          cols="30"
+          rows="10"
+          [(ngModel)]="content"
+        ></textarea>
+      </div>
+    </form>
+    <div class="footer">
+      <button (click)="onCancel()" class="cancel">Cancel</button>
+      <button (click)="onSaveNote()" class="save">Save</button>
+    </div>
+  </div>
+</div>

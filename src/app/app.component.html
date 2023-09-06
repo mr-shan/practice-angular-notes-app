@@ -1,4 +1,10 @@
-<app-header></app-header>
+<app-header (open-dialog)="openNewNoteDialog()"></app-header>
 <main>
-  <app-notes></app-notes>
+  <app-notes [notes]="notes"></app-notes>
 </main>
+
+<app-new-note
+  *ngIf="showNewNoteDialog"
+  (cancel)="closeNewNoteDialog()"
+  (save)="onSaveNote($event)"
+></app-new-note>
