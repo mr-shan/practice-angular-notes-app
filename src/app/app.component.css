@@ -1,3 +1,10 @@
 main {
   margin-top: 4rem;
 }
+
+.no-notes-found {
+  text-align: center;
+  margin-top: 5rem;
+  color: #666;
+  font-size: 0.9rem;
+}

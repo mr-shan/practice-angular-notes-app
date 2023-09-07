@@ -1,6 +1,9 @@
-<article class="note-wrapper">
+<article class="note-wrapper" (click)="onNoteClick()">
   <header class="note-header">
-    {{ name }}
+    <div class="backslash"></div>
+    <div class="header-title">
+      {{ name }}
+    </div>
   </header>
   <p class="note-body">
     {{ content }}

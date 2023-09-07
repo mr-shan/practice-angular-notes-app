@@ -3,5 +3,7 @@
     *ngFor="let note of notes"
     [name]="note.name"
     [content]="note.content"
+    [id]="note.id"
+    (openNote)="onOpenNote($event)"
   ></app-note-item>
 </div>

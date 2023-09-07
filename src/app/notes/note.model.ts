@@ -4,7 +4,7 @@ export class Note {
   content: string;
 
   constructor(name: string, content: string) {
-    this.id = Date.now().toString();
+    this.id = (Date.now().toString() + Math.random()).toString().replace('.', '-')
     this.name = name;
     this.content = content
   }

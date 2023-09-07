@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Note } from './note.model';
 
@@ -9,8 +9,14 @@ import { Note } from './note.model';
 })
 export class NotesComponent {
   @Input('notes') notes: Array<Note>;
+  @Output('openNote') openNote: EventEmitter<string>;
 
   constructor() {
     this.notes = [];
+    this.openNote = new EventEmitter()
+  }
+
+  onOpenNote(event: string) {
+    this.openNote.emit(event);
   }
 }
