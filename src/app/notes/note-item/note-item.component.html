@@ -1,11 +1,15 @@
-<article class="note-wrapper" (click)="onNoteClick()">
+<article
+  class="note-wrapper"
+  (click)="onNoteClick()"
+  [style]="{ backgroundColor: data.shade }"
+>
   <header class="note-header">
     <div class="backslash"></div>
     <div class="header-title">
-      {{ name }}
+      {{ data.name }}
     </div>
   </header>
   <p class="note-body">
-    {{ content }}
+    {{ data.content }}
   </p>
 </article>

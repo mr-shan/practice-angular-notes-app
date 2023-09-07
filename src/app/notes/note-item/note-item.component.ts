@@ -1,14 +1,15 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
+import { Note } from '../note.model';
+
 @Component({
   selector: 'app-note-item',
   templateUrl: './note-item.component.html',
   styleUrls: ['./note-item.component.css']
 })
 export class NoteItemComponent {
-  @Input('name') name: string = '';
-  @Input('content') content: string = '';
-  @Input('id') id: string = '';
+  @Input('data') data: Note = {} as Note;
+
   @Output('openNote') openNote = {} as EventEmitter<string>;
 
   constructor() {
@@ -16,6 +17,6 @@ export class NoteItemComponent {
   }
 
   onNoteClick() {
-    this.openNote.emit(this.id);
+    this.openNote.emit(this.data.id);
   }
 }

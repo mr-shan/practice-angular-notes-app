@@ -1,8 +1,7 @@
 <div class="notes-container">
   <app-note-item
     *ngFor="let note of notes"
-    [name]="note.name"
-    [content]="note.content"
+    [data]="note"
     [id]="note.id"
     (openNote)="onOpenNote($event)"
   ></app-note-item>

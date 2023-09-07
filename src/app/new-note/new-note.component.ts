@@ -5,10 +5,11 @@ import {
   EventEmitter,
   ViewChild,
   ElementRef,
-  OnInit
+  OnInit,
 } from '@angular/core';
 
 import { Note } from '../notes/note.model';
+import { NOTE_COLOR_OPTIONS } from '../constants';
 
 @Component({
   selector: 'app-new-note',
@@ -26,14 +27,18 @@ export class NewNoteComponent implements OnInit {
 
   name: string;
   content: string;
-  mode: string = 'new'
+  shade: string;
+  mode: string = 'new';
+  colorOptions: Array<string>;
 
   constructor() {
     this.saveNoteEvent = new EventEmitter();
     this.cancelEvent = new EventEmitter();
+    this.colorOptions = Object.keys(NOTE_COLOR_OPTIONS);
 
     this.name = '';
     this.content = '';
+    this.shade = NOTE_COLOR_OPTIONS.YELLOW;
   }
 
   ngOnInit(): void {
@@ -41,6 +46,7 @@ export class NewNoteComponent implements OnInit {
       this.name = this.data.name;
       this.content = this.data.content;
       this.mode = 'edit';
+      this.shade = this.data.shade;
     }
   }
 
@@ -54,7 +60,8 @@ export class NewNoteComponent implements OnInit {
         name: this.name,
         content: this.content,
         mode: this.mode,
-        id: this.data?.id || null
+        id: this.data?.id || null,
+        shade: this.shade,
       });
 
       this.name = '';
@@ -67,6 +74,11 @@ export class NewNoteComponent implements OnInit {
     setTimeout(() => {
       this.cancelEvent.emit();
     }, 500);
+  }
+
+  onColorChange(event: any) {
+    const colorOption = event.target.value || 'YELLOW';
+    this.shade = NOTE_COLOR_OPTIONS[colorOption];
   }
 
   setClosingAnimations() {
