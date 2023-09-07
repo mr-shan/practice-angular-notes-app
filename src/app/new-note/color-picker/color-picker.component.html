@@ -1,0 +1,16 @@
+<div class="color-picker-container">
+  <button class="color-button" (click)="showDropdown = !showDropdown">
+    <div class="button-option" [ngStyle]="{ background: selected }"></div>
+    <div class="button-option-arrow">&#x25BC;</div>
+  </button>
+
+  <div class="dropdown" *ngIf="showDropdown">
+    <button
+      tabindex="0"
+      class="option"
+      *ngFor="let option of dropdownOptions"
+      [ngStyle]="{ background: option }"
+      (click)="onColorChange(option)"
+    ></button>
+  </div>
+</div>

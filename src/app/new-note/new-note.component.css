@@ -1,5 +1,5 @@
 .new-note-container {
-  position: absolute;
+  position: fixed;
   margin: auto;
   left: 0;
   top: 0;
@@ -33,7 +33,6 @@
   right: 0;
   max-width: 450px;
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0px 0px 12px #333;
 
   animation: pop-in 0.3s ease-out forwards;
@@ -48,7 +47,6 @@
 }
 
 .footer {
-   /* background-color: #ffca00; */
    padding: 0.75rem;
    text-align: center;
 }
@@ -65,31 +63,35 @@
 
 .input-wrapper-name {
   background-color: #ffca00;
-  padding: 0.75rem 0;
+  padding: 0.75rem 1rem;
   padding-bottom: 0;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-radius: 10px 10px 0 0;
+  border-bottom: solid 1px #999;
 }
 
 input, textarea {
   background: none;
   font-size: 1rem;
   border: none;
-  outline: none;
-  border-bottom: #999 solid 1px;
+  outline: none;  
   width: 100%;
-  padding: 0.25rem 1rem;
+  padding: 0.25rem 0;
 }
 
 input  {
   padding-bottom: 0.5rem;
+  font-weight: bold;
 }
 
 textarea {
   resize: none;
+  padding: 0 1rem;
   padding-top: 0.75rem;
+  border-bottom: #999 solid 1px;
 }
 
 button {

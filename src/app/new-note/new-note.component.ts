@@ -67,6 +67,14 @@ export class NewNoteComponent implements OnInit {
       this.name = '';
       this.content = '';
     }, 500);
+
+    if (this.mode === 'new') {
+      window.scroll({
+        top: document.body.scrollHeight, 
+        left: 0, 
+        behavior: 'smooth' 
+      });
+    }
   }
 
   onCancel() {
@@ -77,8 +85,7 @@ export class NewNoteComponent implements OnInit {
   }
 
   onColorChange(event: any) {
-    const colorOption = event.target.value || 'YELLOW';
-    this.shade = NOTE_COLOR_OPTIONS[colorOption];
+    this.shade = NOTE_COLOR_OPTIONS[event];
   }
 
   setClosingAnimations() {

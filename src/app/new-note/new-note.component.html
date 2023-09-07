@@ -4,7 +4,7 @@
     <form class="new-note-form">
       <div class="input-wrapper-name">
         <input type="text" name="name" placeholder="Name" [(ngModel)]="name" />
-        <select
+        <!-- <select
           class="color-option-dropdown"
           (change)="onColorChange($event)"
           [value]="shade"
@@ -12,7 +12,8 @@
           <option class="color-option" *ngFor="let color of colorOptions">
             {{ color }}
           </option>
-        </select>
+        </select> -->
+        <app-color-picker [color]="shade" (color-change)="onColorChange($event)"></app-color-picker>
       </div>
       <div class="input-wrapper">
         <textarea

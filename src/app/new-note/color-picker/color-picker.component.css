@@ -1,0 +1,60 @@
+.color-picker-container {
+  background: transparent;
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  background-color: #f9f9f9;
+  border: solid 1px #ccc;
+  border-radius: 10px;
+  padding-top: 5px;
+  box-shadow: 0px 0px 5px 0px #666;
+}
+
+button {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border: solid 1px #ccc;
+  width: 2.2rem;
+  height: 1.5rem;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border: solid 1px #999;
+}
+
+.button-option {
+  width: 1rem;
+  height: 1rem;
+  border: solid 1px #999;
+  border-radius: 0.5rem;
+}
+
+.button-option-arrow {
+  font-size: 0.7rem;
+  color: #555;
+}
+
+.option {
+  width: 1rem;
+  height: 1rem;
+  border: solid 1px #999;
+  border-radius: 0.5rem;
+  margin: auto;
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.option:hover {
+  border-color: #333;
+}

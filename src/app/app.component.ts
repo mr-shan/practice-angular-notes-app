@@ -33,6 +33,13 @@ export class AppComponent {
     if (event.mode === 'new') {
       const newNote = new Note(event.name, event.content, event.shade);
       this.notes.push(newNote);
+      if (event.mode === 'new') {
+        window.scroll({
+          top: document.body.scrollHeight, 
+          left: 0, 
+          behavior: 'smooth' 
+        });
+      }
     } else if (event.mode === 'edit' && event.id) {
       const existingNote = this.notes.find(e => e.id === event.id)
       if (existingNote) {
