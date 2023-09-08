@@ -2,7 +2,6 @@
   box-shadow: 0px 0px 5px #666;
   border-radius: 10px;
   overflow: hidden;
-  max-width: 200px;
   user-select: none;
   cursor: pointer;
   transition: all 0.25s ease-out;
@@ -42,7 +41,7 @@
   font-size: 1rem;
   padding: 10px 14px;
 
-  max-width: 200px;
+
   height: 82px;
 
   display: -webkit-box;
@@ -52,6 +51,23 @@
   margin: 0;
   line-height: 1.4;
   user-select: none;
+}
+
+.expand-note {
+  background-color: rgb(250, 232, 169);
+  position: fixed;
+  z-index: 200;
+  margin: auto;
+  transition: all 0.25s ease-out;
+  animation: pop-in 0.25s ease-out forwards;
+}
+
+.expand-note-after {
+  width: 70%;
+  height: 70%;
+  top: 20%;
+  left: 0;
+  right: 0;
 }
 
 @keyframes pop-in {

@@ -1,19 +1,14 @@
 <div class="new-note-container">
   <div class="backslash" #backslash></div>
-  <div class="main-body" #mainBody>
+  <div class="main-body" #mainBody [ngStyle]="{backgroundColor: shade}">
     <form class="new-note-form">
       <div class="input-wrapper-name">
+        <div class="shade-backslash"></div>
         <input type="text" name="name" placeholder="Name" [(ngModel)]="name" />
-        <!-- <select
-          class="color-option-dropdown"
-          (change)="onColorChange($event)"
-          [value]="shade"
-        >
-          <option class="color-option" *ngFor="let color of colorOptions">
-            {{ color }}
-          </option>
-        </select> -->
-        <app-color-picker [color]="shade" (color-change)="onColorChange($event)"></app-color-picker>
+        <app-color-picker
+          [color]="shade"
+          (color-change)="onColorChange($event)"
+        ></app-color-picker>
       </div>
       <div class="input-wrapper">
         <textarea
@@ -28,7 +23,14 @@
     </form>
     <div class="footer">
       <button (click)="onCancel()" class="cancel">Cancel</button>
-      <button (click)="onSaveNote()" class="save">Save</button>
+      <button
+        class="save"
+        [disabled]="!(name && content)"
+        [ngStyle]="{ backgroundColor: shade }"
+        (click)="onSaveNote()"
+      >
+        Save
+      </button>
     </div>
   </div>
 </div>
