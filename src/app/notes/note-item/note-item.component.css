@@ -54,20 +54,25 @@
 }
 
 .expand-note {
-  background-color: rgb(250, 232, 169);
   position: fixed;
   z-index: 200;
-  margin: auto;
-  transition: all 0.25s ease-out;
-  animation: pop-in 0.25s ease-out forwards;
+  transition: all 0.15s ease-out;
+  animation: pop-in 0.15s ease-out forwards;
+  opacity: 0;
 }
 
 .expand-note-after {
-  width: 70%;
-  height: 70%;
-  top: 20%;
-  left: 0;
-  right: 0;
+  width: 70% !important;
+  height: 70% !important;
+  top: 20% !important;
+  animation: fade-in 0.15s ease-out forwards;
+}
+
+.expand-note-final {
+  left: 0 !important;
+  right: 0 !important;
+  margin: auto !important;
+  animation: fade-in 0.15s ease-out forwards;
 }
 
 @keyframes pop-in {
@@ -98,5 +103,14 @@
 
   100% {
     transform: scale(0, 0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
