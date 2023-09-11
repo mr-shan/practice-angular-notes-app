@@ -24,32 +24,33 @@ export class NoteItemComponent {
   constructor() {
     this.openNote = new EventEmitter();
     this.containerRef = {} as ElementRef;
-    this.isOpen = true;
+    this.isOpen = false;
   }
 
   onNoteClick() {
-    // const boundingBox = this.containerRef.nativeElement.getBoundingClientRect();
-    // this.containerRef.nativeElement.classList.add('expand-note');
-    // this.setBeforeExpandPositions(boundingBox);
-    
+    // if (this.isOpen) return;
+    // this.setBeforeExpandPositions();
+
     // setTimeout(() => {
-    //   this.containerRef.nativeElement.classList.add('expand-note-final');
-    // }, 0);
-    // setTimeout(() => {
-    //   this.containerRef.nativeElement.classList.add('expand-note-after');
+    //   this.containerRef.nativeElement.classList.add('expand-note');
+    //   this.containerRef.nativeElement.classList.add('test-expand-note');
+    //   this.isOpen = true;
     // }, 50);
-    
-    
+
     // setTimeout(() => {
-    //   this.containerRef.nativeElement.classList.remove('expand-note-after');
-    //   this.containerRef.nativeElement.classList.remove('expand-note-final');
-    //   this.containerRef.nativeElement.classList.remove('expand-note');
-    //   this.resetContainerPositions();
-    // }, 200);
+    //   this.containerRef.nativeElement.classList.remove('test-expand-note');
+    //   setTimeout(() => {
+    //     this.containerRef.nativeElement.classList.remove('expand-note');
+    //     this.resetContainerPositions();
+    //     this.isOpen = false;
+    //   }, 250);
+    // }, 2000);
+
     this.openNote.emit(this.data.id);
   }
 
-  setBeforeExpandPositions(box: DOMRect) {
+  setBeforeExpandPositions() {
+    const box = this.containerRef.nativeElement.getBoundingClientRect();
     this.containerRef.nativeElement.style.width = box.width + 'px';
     this.containerRef.nativeElement.style.height = box.height + 'px';
     this.containerRef.nativeElement.style.left = box.left + 'px';

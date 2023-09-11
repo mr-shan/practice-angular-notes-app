@@ -5,7 +5,6 @@
   #containerRef
 >
   <header class="note-header">
-    <div class="backslash"></div>
     <div class="header-title">
       {{ data.name }}
     </div>
@@ -14,3 +13,5 @@
     {{ data.content }}
   </p>
 </article>
+
+<div class="backslash" *ngIf="isOpen"></div>
