@@ -5,4 +5,13 @@
     [id]="note.id"
     (openNote)="onOpenNote($event)"
   ></app-note-item>
+  <div *ngIf="notes.length === 0">
+    <p class="no-notes-found">Nothing here... Start by creating new notes!</p>
+  </div>
 </div>
+
+<app-new-note
+  *ngIf="showNewNoteDialog"
+  (closeDialog)="closeNoteDialog()"
+  [noteId]="openNoteId"
+></app-new-note>

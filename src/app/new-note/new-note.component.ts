@@ -10,6 +10,7 @@ import {
 
 import { Note } from '../notes/note.model';
 import { NOTE_COLOR_OPTIONS } from '../constants';
+import { NoteServiceService } from '../note-service.service';
 
 @Component({
   selector: 'app-new-note',
@@ -20,10 +21,9 @@ export class NewNoteComponent implements OnInit {
   @ViewChild('mainBody', { static: false }) mainBody = {} as ElementRef;
   @ViewChild('backslash', { static: false }) backslash = {} as ElementRef;
 
-  @Input('data') data: Note | null = null;
+  @Input('noteId') noteId: string;
 
-  @Output('save') saveNoteEvent: EventEmitter<any>;
-  @Output('cancel') cancelEvent: EventEmitter<any>;
+  @Output('closeDialog') closeDialog: EventEmitter<null>;
 
   name: string;
   content: string;
@@ -31,22 +31,24 @@ export class NewNoteComponent implements OnInit {
   mode: string = 'new';
   colorOptions: Array<string>;
 
-  constructor() {
-    this.saveNoteEvent = new EventEmitter();
-    this.cancelEvent = new EventEmitter();
+  constructor(private noteService: NoteServiceService) {
+    this.closeDialog = new EventEmitter();
     this.colorOptions = Object.keys(NOTE_COLOR_OPTIONS);
 
     this.name = '';
     this.content = '';
     this.shade = NOTE_COLOR_OPTIONS.YELLOW;
+    this.noteId = '';
   }
 
   ngOnInit(): void {
-    if (this.data) {
-      this.name = this.data.name;
-      this.content = this.data.content;
+    if (this.noteId) {
+      const data = this.noteService.get(this.noteId)
+      if (!data) this.onCancel();
+      this.name = data.name;
+      this.content = data.content;
       this.mode = 'edit';
-      this.shade = this.data.shade;
+      this.shade = data.shade;
     }
   }
 
@@ -56,21 +58,24 @@ export class NewNoteComponent implements OnInit {
     this.setClosingAnimations();
 
     setTimeout(() => {
-      this.saveNoteEvent.emit({
-        name: this.name,
-        content: this.content,
-        mode: this.mode,
-        id: this.data?.id || null,
-        shade: this.shade,
-      });
+      if (this.mode === 'new') {
+        this.noteService.create(this.name, this.content, this.shade)
+      } else {
+        if (this.noteId)
+          this.noteService.edit(this.noteId, {
+            name: this.name,
+            content: this.content,
+            shade: this.shade,
+          })
+      }
 
-      this.name = '';
-      this.content = '';
-    }, 500);
+      this.resetNoteDetails();
+      this.closeDialog.emit();
+    }, 250);
 
     if (this.mode === 'new') {
       window.scroll({
-        top: document.body.scrollHeight, 
+        top: 0, 
         left: 0, 
         behavior: 'smooth' 
       });
@@ -80,8 +85,9 @@ export class NewNoteComponent implements OnInit {
   onCancel() {
     this.setClosingAnimations();
     setTimeout(() => {
-      this.cancelEvent.emit();
-    }, 500);
+      this.closeDialog.emit();
+      this.resetNoteDetails();
+    }, 250);
   }
 
   onColorChange(event: any) {
@@ -91,5 +97,11 @@ export class NewNoteComponent implements OnInit {
   setClosingAnimations() {
     this.mainBody.nativeElement.classList.add('main-body-pop-out');
     this.backslash.nativeElement.classList.add('backslash-fade-out');
+  }
+
+  resetNoteDetails() {
+    this.name = '';
+    this.content = ''
+    this.shade = NOTE_COLOR_OPTIONS.YELLOW;
   }
 }

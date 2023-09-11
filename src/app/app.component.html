@@ -1,18 +1,9 @@
-<app-header (open-dialog)="openNewNoteDialog()"></app-header>
+<app-header (open-dialog)="showNewNoteDialog = true"></app-header>
 <main>
-  <app-notes
-    *ngIf="notes.length > 0; else noNotesFound"
-    [notes]="notes"
-    (openNote)="onOpenExistingNote($event)"
-  ></app-notes>
-  <ng-template #noNotesFound>
-    <p class="no-notes-found">Nothing here... Start by creating new notes!
-  </ng-template>
+  <app-notes></app-notes>
 </main>
 
 <app-new-note
   *ngIf="showNewNoteDialog"
-  [data]="noteData"
-  (cancel)="closeNewNoteDialog()"
-  (save)="onSaveNote($event)"
+  (closeDialog)="showNewNoteDialog = false"
 ></app-new-note>

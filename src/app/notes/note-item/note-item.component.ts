@@ -17,35 +17,35 @@ import { Note } from '../note.model';
 export class NoteItemComponent {
   @ViewChild('containerRef') containerRef: ElementRef;
   @Input('data') data: Note = {} as Note;
-
   @Output('openNote') openNote = {} as EventEmitter<string>;
+
+  isOpen: boolean;
 
   constructor() {
     this.openNote = new EventEmitter();
     this.containerRef = {} as ElementRef;
+    this.isOpen = true;
   }
 
   onNoteClick() {
-    const boundingBox = this.containerRef.nativeElement.getBoundingClientRect();
-    this.containerRef.nativeElement.classList.add('expand-note');
-    this.setBeforeExpandPositions(boundingBox);
+    // const boundingBox = this.containerRef.nativeElement.getBoundingClientRect();
+    // this.containerRef.nativeElement.classList.add('expand-note');
+    // this.setBeforeExpandPositions(boundingBox);
     
-    setTimeout(() => {
-      this.containerRef.nativeElement.classList.add('expand-note-final');
-    }, 0);
-    setTimeout(() => {
-      this.containerRef.nativeElement.classList.add('expand-note-after');
-    }, 0);
+    // setTimeout(() => {
+    //   this.containerRef.nativeElement.classList.add('expand-note-final');
+    // }, 0);
+    // setTimeout(() => {
+    //   this.containerRef.nativeElement.classList.add('expand-note-after');
+    // }, 50);
     
     
-    setTimeout(() => {
-      this.containerRef.nativeElement.classList.remove('expand-note-after');
-      this.containerRef.nativeElement.classList.remove('expand-note-final');
-      this.containerRef.nativeElement.classList.remove('expand-note');
-      this.resetContainerPositions();
-    }, 50);
-
-
+    // setTimeout(() => {
+    //   this.containerRef.nativeElement.classList.remove('expand-note-after');
+    //   this.containerRef.nativeElement.classList.remove('expand-note-final');
+    //   this.containerRef.nativeElement.classList.remove('expand-note');
+    //   this.resetContainerPositions();
+    // }, 200);
     this.openNote.emit(this.data.id);
   }
 

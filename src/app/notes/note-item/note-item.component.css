@@ -5,7 +5,7 @@
   user-select: none;
   cursor: pointer;
   transition: all 0.25s ease-out;
-
+  
   animation: pop-in 0.25s ease-out forwards;
 }
 
@@ -18,15 +18,9 @@
   position: relative;
 }
 
-.backslash {
-  position: absolute;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #333;
-  top: 0;
-  opacity: 0.15;
+.main-body {
+  z-index: 10;
+  position: relative;
 }
 
 .note-header .header-title {
@@ -65,14 +59,14 @@
   width: 70% !important;
   height: 70% !important;
   top: 20% !important;
-  animation: fade-in 0.15s ease-out forwards;
+  animation: fade-in 0.25s ease-out forwards;
 }
 
 .expand-note-final {
   left: 0 !important;
   right: 0 !important;
   margin: auto !important;
-  animation: fade-in 0.15s ease-out forwards;
+  animation: fade-in 0.25s ease-out forwards;
 }
 
 @keyframes pop-in {
