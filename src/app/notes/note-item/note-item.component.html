@@ -2,16 +2,27 @@
   class="note-wrapper"
   (click)="onNoteClick()"
   [style]="{ backgroundColor: data.shade }"
+  [ngClass]="{ 'note-header-thumbnail': !isOpen }"
   #containerRef
 >
   <header class="note-header">
+    <div class="header-backslash"></div>
     <div class="header-title">
       {{ data.name }}
+    </div>
+    <div class="header-buttons" *ngIf="isOpen">
+      <button (click)="onCloseNote()" class="header-dot-button maximize">[]</button>
+      <button (click)="onCloseNote()" class="header-dot-button minimize">_</button>
+      <button (click)="onCloseNote()" class="header-dot-button close">x</button>
     </div>
   </header>
   <p class="note-body">
     {{ data.content }}
   </p>
+
+  <footer class="note-footer" *ngIf="isOpen">
+    <button class="close"></button>
+  </footer>
 </article>
 
-<div class="backslash" *ngIf="isOpen"></div>
+<div class="backslash" *ngIf="isOpen" #backslash></div>

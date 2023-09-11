@@ -16,6 +16,7 @@ import { Note } from '../note.model';
 })
 export class NoteItemComponent {
   @ViewChild('containerRef') containerRef: ElementRef;
+  @ViewChild('backslash') backslashRef: ElementRef;
   @Input('data') data: Note = {} as Note;
   @Output('openNote') openNote = {} as EventEmitter<string>;
 
@@ -24,29 +25,32 @@ export class NoteItemComponent {
   constructor() {
     this.openNote = new EventEmitter();
     this.containerRef = {} as ElementRef;
+    this.backslashRef = {} as ElementRef;
     this.isOpen = false;
   }
 
   onNoteClick() {
-    // if (this.isOpen) return;
-    // this.setBeforeExpandPositions();
+    if (this.isOpen) return;
+    this.setBeforeExpandPositions();
 
-    // setTimeout(() => {
-    //   this.containerRef.nativeElement.classList.add('expand-note');
-    //   this.containerRef.nativeElement.classList.add('test-expand-note');
-    //   this.isOpen = true;
-    // }, 50);
-
-    // setTimeout(() => {
-    //   this.containerRef.nativeElement.classList.remove('test-expand-note');
-    //   setTimeout(() => {
-    //     this.containerRef.nativeElement.classList.remove('expand-note');
-    //     this.resetContainerPositions();
-    //     this.isOpen = false;
-    //   }, 250);
-    // }, 2000);
-
+    setTimeout(() => {
+      this.containerRef.nativeElement.classList.add('expand-note');
+      this.containerRef.nativeElement.classList.add('test-expand-note');
+      this.isOpen = true;
+    }, 50);
+    
     this.openNote.emit(this.data.id);
+  }
+
+  onCloseNote() {
+    this.containerRef.nativeElement.classList.remove('test-expand-note');
+    this.backslashRef.nativeElement.classList.add('fade-out-animation');
+    setTimeout(() => {
+      this.containerRef.nativeElement.classList.remove('expand-note');
+      this.resetContainerPositions();
+      this.backslashRef.nativeElement.classList.remove('fade-out-animation');      
+      this.isOpen = false;
+    }, 250);
   }
 
   setBeforeExpandPositions() {
