@@ -5,28 +5,44 @@ import {
   EventEmitter,
   ViewChild,
   ElementRef,
+  OnInit,
 } from '@angular/core';
 
 import { Note } from '../note.model';
+import { NoteServiceService } from 'src/app/note-service.service';
 
 @Component({
   selector: 'app-note-item',
   templateUrl: './note-item.component.html',
   styleUrls: ['./note-item.component.css'],
 })
-export class NoteItemComponent {
+export class NoteItemComponent implements OnInit {
   @ViewChild('containerRef') containerRef: ElementRef;
   @ViewChild('backslash') backslashRef: ElementRef;
   @Input('data') data: Note = {} as Note;
   @Output('openNote') openNote = {} as EventEmitter<string>;
 
+  name: string;
+  content: string;
+  shade: string;
+
   isOpen: boolean;
 
-  constructor() {
+  constructor(private noteService: NoteServiceService) {
     this.openNote = new EventEmitter();
     this.containerRef = {} as ElementRef;
     this.backslashRef = {} as ElementRef;
     this.isOpen = false;
+
+    this.name = '';
+    this.content = '';
+    this.shade = '';
+  }
+
+  ngOnInit(): void {
+    this.name = this.data.name;
+    this.content = this.data.content;
+    this.shade = this.data.shade;
   }
 
   onNoteClick() {
@@ -39,7 +55,19 @@ export class NoteItemComponent {
       this.isOpen = true;
     }, 50);
     
-    this.openNote.emit(this.data.id);
+    // this.openNote.emit(this.data.id);
+  }
+
+  onSaveNote() {
+    if (!(this.name && this.content)) return;
+
+    this.noteService.edit(this.data.id, {
+      name: this.name,
+      content: this.content,
+      shade: this.shade
+    })
+
+    this.onCloseNote();
   }
 
   onCloseNote() {
@@ -51,6 +79,13 @@ export class NoteItemComponent {
       this.backslashRef.nativeElement.classList.remove('fade-out-animation');      
       this.isOpen = false;
     }, 250);
+  }
+
+  onDeleteNote() {
+    this.containerRef.nativeElement.classList.add('note-remove-animation');
+    setTimeout(() => {
+      this.noteService.remove(this.data.id);
+    }, 250)
   }
 
   setBeforeExpandPositions() {

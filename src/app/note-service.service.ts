@@ -71,7 +71,11 @@ export class NoteServiceService {
   }
 
   remove(id: string) {
-    this.notes = this.notes.filter(e => e.id !== id)
+    const noteToRemove = this.notes.find(e => e.id === id);
+    if (!noteToRemove) return;
+
+    const index = this.notes.indexOf(noteToRemove);
+    this.notes.splice(index, 1);
   }
 
   openNoteDialog(id?: string) {

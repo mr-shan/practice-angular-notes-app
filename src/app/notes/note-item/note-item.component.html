@@ -8,20 +8,52 @@
   <header class="note-header">
     <div class="header-backslash"></div>
     <div class="header-title">
-      {{ data.name }}
+      <input
+        type="text"
+        name="name"
+        placeholder="Name"
+        [(ngModel)]="name"
+        *ngIf="isOpen; else header"
+      />
+      <ng-template #header>
+        <span>{{ data.name }}</span>
+      </ng-template>
     </div>
     <div class="header-buttons" *ngIf="isOpen">
-      <button (click)="onCloseNote()" class="header-dot-button maximize">[]</button>
-      <button (click)="onCloseNote()" class="header-dot-button minimize">_</button>
-      <button (click)="onCloseNote()" class="header-dot-button close">x</button>
+      <button (click)="onCloseNote()" class="header-dot-button maximize">
+        []
+      </button>
+      <button (click)="onCloseNote()" class="header-dot-button minimize">
+        _
+      </button>
+      <button (click)="onDeleteNote()" class="header-dot-button close">x</button>
     </div>
   </header>
-  <p class="note-body">
-    {{ data.content }}
-  </p>
+  <textarea
+  placeholder="Content"
+  name="content"
+  id="content"
+  cols="30"
+  rows="10"
+  *ngIf="isOpen; else contentText"
+  [(ngModel)]="content"
+  ></textarea>
+  <ng-template #contentText>
+    <p class="note-body" >
+      {{ data.content }}
+    </p>
+  </ng-template>
 
   <footer class="note-footer" *ngIf="isOpen">
-    <button class="close"></button>
+    <button (click)="onCloseNote()" class="footer-button cancel">Cancel</button>
+    <button
+      class="footer-button save"
+      [disabled]="!(name && content)"
+      [ngStyle]="{ backgroundColor: shade }"
+      (click)="onSaveNote()"
+    >
+      Save
+    </button>
   </footer>
 </article>
 

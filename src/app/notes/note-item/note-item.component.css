@@ -3,10 +3,10 @@
   border-radius: 10px;
   transition: all 0.25s ease-out;
   animation: pop-in 0.25s ease-out forwards;
+  overflow: hidden;
 }
 
 .note-header-thumbnail {
-  overflow: hidden;
   cursor: pointer;
   user-select: none;
 }
@@ -22,6 +22,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
 }
 
 .header-backslash {
@@ -58,13 +59,13 @@
 }
 
 .maximize {
-  background: green;
+  background: #19a619;
 }
 .minimize {
   background: yellow;
 }
 .close {
-  background: red;
+  background: #ff4f4f;
 }
 
 .main-body {
@@ -77,6 +78,7 @@
   white-space: nowrap;
   overflow: hidden;
   z-index: 10;
+  width: 100%;
 }
 
 .note-body {
@@ -136,6 +138,66 @@
   display: flex;
   align-items: center;
   animation: pop-in 0.25s ease-out forwards;
+  justify-content: center;
+}
+
+input,
+textarea {
+  background: none;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 0.25rem 0;
+  width: 100%;
+}
+
+input {
+  font-weight: bold;
+}
+
+textarea {
+  resize: none;
+  padding: 0 1rem;
+  padding-top: 0.75rem;
+  height: calc(100% - 5.5rem);
+}
+
+.footer-button {
+  padding: 0.25rem 0.75rem;
+  margin: 0;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  background: none;
+  width: 6rem;
+  border-radius: 5px;
+  margin: 0 0.5rem 0 0.5rem;
+  border: solid 1px var(--gray-light);
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.footer-button:hover {
+  background-color: var(--white);
+}
+
+.save {
+  background: var(--white) !important;
+}
+
+.save:hover {
+  background: var(--white-shade) !important;
+}
+
+.save:disabled {
+  background: var(--white-shade) !important;
+  color: var(--gray-light);
+  cursor: default;
+}
+
+.note-remove-animation {
+  animation: pop-out 0.25s ease-out forwards;
 }
 
 @keyframes pop-in {
