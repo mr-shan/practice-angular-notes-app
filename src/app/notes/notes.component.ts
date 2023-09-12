@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 
 import { Note } from './note.model';
 import { NoteServiceService } from '../note-service.service';
@@ -6,16 +6,15 @@ import { NoteServiceService } from '../note-service.service';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.css']
+  styleUrls: ['./notes.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class NotesComponent implements OnInit {
   notes: Note[];
-  showNewNoteDialog: boolean;
   openNoteId: string;
 
   constructor(private noteService: NoteServiceService) {
     this.notes = [];
-    this.showNewNoteDialog = false;
     this.openNoteId = '';
   }
 
@@ -24,12 +23,10 @@ export class NotesComponent implements OnInit {
   }
 
   onOpenNote(noteId: string) {
-    this.showNewNoteDialog = true;
     this.openNoteId = noteId;
   }
 
   closeNoteDialog() {
-    this.showNewNoteDialog = false;
     this.openNoteId = '';
   }
 }

@@ -6,3 +6,15 @@
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   max-width: 1200px;
 }
+
+.note-item {
+  transition: all 0.1s ease-out;
+}
+
+.note-item:hover {
+  transform: scale(1.04, 1.04);
+}
+
+.note-item:active {
+  transform: scale(1, 1);
+}

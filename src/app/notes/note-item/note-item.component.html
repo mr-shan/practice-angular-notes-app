@@ -20,12 +20,6 @@
       </ng-template>
     </div>
     <div class="header-buttons" *ngIf="isOpen">
-      <button (click)="onCloseNote()" class="header-dot-button maximize">
-        []
-      </button>
-      <button (click)="onCloseNote()" class="header-dot-button minimize">
-        _
-      </button>
       <button (click)="onDeleteNote()" class="header-dot-button close">x</button>
     </div>
   </header>
@@ -57,4 +51,4 @@
   </footer>
 </article>
 
-<div class="backslash" *ngIf="isOpen" #backslash></div>
+<div class="backslash" *ngIf="isOpen" #backslash (click)="onCloseNote()"></div>

@@ -55,7 +55,7 @@ export class NoteItemComponent implements OnInit {
       this.isOpen = true;
     }, 50);
     
-    // this.openNote.emit(this.data.id);
+    this.openNote.emit(this.data.id);
   }
 
   onSaveNote() {
@@ -78,6 +78,7 @@ export class NoteItemComponent implements OnInit {
       this.resetContainerPositions();
       this.backslashRef.nativeElement.classList.remove('fade-out-animation');      
       this.isOpen = false;
+      this.openNote.emit('');
     }, 250);
   }
 
@@ -86,6 +87,7 @@ export class NoteItemComponent implements OnInit {
     setTimeout(() => {
       this.noteService.remove(this.data.id);
     }, 250)
+    this.openNote.emit();
   }
 
   setBeforeExpandPositions() {
