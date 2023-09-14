@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 import { Note } from './notes/note.model';
 import { NOTE_COLOR_OPTIONS } from './constants';
@@ -7,11 +7,12 @@ import { NOTE_COLOR_OPTIONS } from './constants';
   providedIn: 'root',
 })
 export class NoteServiceService {
-  notes: Array<Note>;
-  noteDialog: boolean;
+  private notes: Array<Note>;
+
+  noteAddedEvent: EventEmitter<Array<Note>>;
 
   constructor() {
-    this.noteDialog = false;
+    this.noteAddedEvent = new EventEmitter();
     this.notes = [
       new Note(
         'First note and this is the biggest title',
@@ -51,12 +52,13 @@ export class NoteServiceService {
       return this.notes.find(e => e.id === id) || null;
     }
 
-    return this.notes;
+    return this.notes.slice();
   }
 
   create(name: string, content: string, shade = NOTE_COLOR_OPTIONS.YELLOW) {
     const newNote = new Note(name, content, shade);
     this.notes.splice(0, 0, newNote);
+    this.noteAddedEvent.emit(this.notes.slice());
   }
 
   edit(id: string, data: any): Note | null {
@@ -67,6 +69,7 @@ export class NoteServiceService {
     note.content = data.content || note.content;
     note.shade = data.shade || note.shade;
 
+    this.noteAddedEvent.emit(this.notes.slice());
     return note;
   }
 
@@ -76,9 +79,6 @@ export class NoteServiceService {
 
     const index = this.notes.indexOf(noteToRemove);
     this.notes.splice(index, 1);
-  }
-
-  openNoteDialog(id?: string) {
-    this.noteDialog = true;
+    this.noteAddedEvent.emit(this.notes.slice());
   }
 }

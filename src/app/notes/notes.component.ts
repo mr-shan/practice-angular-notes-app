@@ -20,6 +20,9 @@ export class NotesComponent implements OnInit {
 
   ngOnInit(): void {
     this.notes = this.noteService.get();
+    this.noteService.noteAddedEvent.subscribe(
+      (event: Array<Note>) => this.notes = event
+    )
   }
 
   onOpenNote(noteId: string) {
