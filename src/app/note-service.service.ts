@@ -14,34 +14,7 @@ export class NoteServiceService {
   constructor() {
     this.noteAddedEvent = new EventEmitter();
     this.notes = [
-      new Note(
-        'First note and this is the biggest title',
-        'this is my first note',
-        NOTE_COLOR_OPTIONS.BLUE
-      ),
-      new Note('First note', 'this is my first note', NOTE_COLOR_OPTIONS.GREEN),
-      new Note('First note', 'this is my first note', NOTE_COLOR_OPTIONS.PINK),
-      new Note(
-        'First note',
-        'this is my first note',
-        NOTE_COLOR_OPTIONS.PURPLE
-      ),
-      new Note(
-        'First note',
-        'this is my first note and it is looking very good. Now I can say that it;s looking good',
-        NOTE_COLOR_OPTIONS.YELLOW
-      ),
-      new Note(
-        'First note',
-        'this is my first note',
-        NOTE_COLOR_OPTIONS.PURPLE
-      ),
-      new Note('First note', 'this is my first note', NOTE_COLOR_OPTIONS.PINK),
-      new Note(
-        'Second note',
-        'This is my second note',
-        NOTE_COLOR_OPTIONS.GREEN
-      ),
+
     ];
   }
 

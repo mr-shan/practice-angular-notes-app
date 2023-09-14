@@ -1,4 +1,4 @@
-<div class="notes-container">
+<div class="notes-container" *ngIf="notes.length; else noNotesFound">
   <app-note-item
     *ngFor="let note of notes"
     [data]="note"
@@ -6,7 +6,9 @@
     (openNote)="onOpenNote($event)"
     [ngClass]="{'note-item': openNoteId === ''}"
   ></app-note-item>
-  <div *ngIf="notes.length === 0">
-    <p class="no-notes-found">Nothing here... Start by creating new notes!</p>
-  </div>
 </div>
+<ng-template #noNotesFound>
+  <div class="no-notes-found">
+    No notes found.
+  </div>
+</ng-template>

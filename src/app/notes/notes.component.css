@@ -3,7 +3,7 @@
   margin: 0 auto;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
   max-width: 1200px;
 }
 
@@ -17,4 +17,12 @@
 
 .note-item:active {
   transform: scale(1, 1);
+}
+
+.no-notes-found {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  width: 100%;
+  margin-top: 5.5rem;
 }
